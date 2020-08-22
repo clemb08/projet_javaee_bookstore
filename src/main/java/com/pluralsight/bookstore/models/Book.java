@@ -1,6 +1,10 @@
 package com.pluralsight.bookstore.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -15,18 +19,32 @@ public class Book {
     private Long Id;
 
     @Column(length = 200)
+    @NotNull
+    @Size(min = 1, max = 200)
     private String title;
+
     @Column(length = 100)
+    @NotNull
+    @Size(min = 1, max = 10000)
     private String description;
+
     @Column(name = "unit_cost")
+    @Min(1)
     private Float unitCost;
 
+    @Column(length = 50)
+    @NotNull
+    @Size(min = 1, max = 50)
     private String isbn;
+
     @Column(name = "publication_date")
     @Temporal(TemporalType.DATE)
+    @Past
     private Date publicationDate;
+
     @Column(name = "nb_of_pages")
     private Integer nbOfPages;
+
     @Column(name = "image_Url")
     private String imageURL;
 
