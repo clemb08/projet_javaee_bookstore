@@ -6,6 +6,10 @@ import java.util.Date;
 @Entity
 public class Book {
 
+    public Book() {
+
+    }
+
     @Id
     @GeneratedValue
     private Long Id;
@@ -24,9 +28,20 @@ public class Book {
     @Column(name = "nb_of_pages")
     private Integer nbOfPages;
     @Column(name = "image_Url")
-    private String imageUrl;
+    private String imageURL;
 
-    private Language Language;
+    private Language language;
+
+    public Book(String isbn, String title, float unitCost, int nbOfPages, Language language, Date publicationDate, String imageURL, String description) {
+        this.isbn = isbn;
+        this.title = title;
+        this.unitCost = unitCost;
+        this.nbOfPages = nbOfPages;
+        this.language = language;
+        this.publicationDate = publicationDate;
+        this.imageURL = imageURL;
+        this.description = description;
+    }
 
     public Long getId() {
         return Id;
@@ -85,19 +100,19 @@ public class Book {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return imageURL;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public com.pluralsight.bookstore.models.Language getLanguage() {
-        return Language;
+        return language;
     }
 
-    public void setLanguage(com.pluralsight.bookstore.models.Language language) {
-        Language = language;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     @Override
@@ -110,8 +125,8 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", nbOfPages=" + nbOfPages +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", Language=" + Language +
+                ", imageUrl='" + imageURL + '\'' +
+                ", Language=" + language +
                 '}';
     }
 }
